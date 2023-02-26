@@ -36,6 +36,7 @@ function App() {
     )
   }
 
+  // useRef 'DOM Element'
   const inputElement = useRef()
   const focusInput = () => {
     inputElement.current.focus()
@@ -50,15 +51,22 @@ function App() {
 
   return (
     <div className="App">
+      <h1>"useContext" for use data global</h1>
       <UserContext.Provider value={user}>
         <h2>Parent Component</h2>
         <Profile/>
       </UserContext.Provider>
+
+
       <div>
+        <h1>"useRef" Control DOM Elements</h1>
         <input type="text" ref={inputElement} /><br />
         <button onClick={focusInput}>Focus Text Input</button>
       </div>
+
+
       <div>
+        <h1>"useRef" Tracking Previous Text</h1>
         <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
         <h2>Current: {text}</h2>
         <h2>Previous: {previousText.current}</h2>
