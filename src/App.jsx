@@ -41,6 +41,13 @@ function App() {
     inputElement.current.focus()
   }
 
+  // useRef 'Tracking Previous Value
+  const [text, setText] = useState("")
+  const previousText = useRef("")
+  useEffect(()=>{
+    previousText.current = text
+  }, [text])
+
   return (
     <div className="App">
       <UserContext.Provider value={user}>
@@ -50,6 +57,11 @@ function App() {
       <div>
         <input type="text" ref={inputElement} /><br />
         <button onClick={focusInput}>Focus Text Input</button>
+      </div>
+      <div>
+        <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
+        <h2>Current: {text}</h2>
+        <h2>Previous: {previousText.current}</h2>
       </div>
     </div>
   )
