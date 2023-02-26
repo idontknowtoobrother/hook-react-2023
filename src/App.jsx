@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -31,17 +31,26 @@ function App() {
     const user = useContext(UserContext) // use context 'UserContext'
     return (
       <>
-        <img class={"avatar"} src={user.imageUrl} alt={`avatar of ${user.name}`} />
+        <img className='avatar' src={user.imageUrl} alt={`avatar of ${user.name}`} />
       </>
     )
   }
-  
+
+  const inputElement = useRef()
+  const focusInput = () => {
+    inputElement.current.focus()
+  }
+
   return (
     <div className="App">
       <UserContext.Provider value={user}>
         <h2>Parent Component</h2>
         <Profile/>
       </UserContext.Provider>
+      <div>
+        <input type="text" ref={inputElement} /><br />
+        <button onClick={focusInput}>Focus Text Input</button>
+      </div>
     </div>
   )
 
