@@ -9,7 +9,7 @@ function App() {
     fetch(`https://jsonplaceholder.typicode.com/users/${selectId}`)
     .then(res => res.json())
     .then(data => console.log(data))
-  }, [selectId])
+  }, [selectId]) // watching depadencies 'selectId' if update it's will call this useEffect again
 
   return (
     <div className="App">
